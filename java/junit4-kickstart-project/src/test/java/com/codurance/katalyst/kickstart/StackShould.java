@@ -28,8 +28,6 @@ public class StackShould {
     @Test
     public void pop_an_element() throws EmptyStackException {
         // Given
-        Stack myStack = new Stack();
-        Object object_1 = new Object();
         myStack.push(object_1);
         // When
         Object result = myStack.pop();
@@ -40,7 +38,6 @@ public class StackShould {
     @Test
     public void pop_last_element() throws EmptyStackException {
         // Given
-        Stack myStack = new Stack();
         myStack.push(object_1);
         myStack.push(object_2);
         // When
@@ -51,9 +48,6 @@ public class StackShould {
 
     @Test (expected = EmptyStackException.class)
     public void pop_an_element_with_empty_stack() throws EmptyStackException {
-        // Given
-        Stack myStack = new Stack();
-        // When
         Object result = myStack.pop();
 
     }
