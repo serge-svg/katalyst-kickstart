@@ -1,58 +1,26 @@
 package com.codurance.katalyst.kickstart.service;
 
 import com.codurance.katalyst.kickstart.RomanNumbersConverter;
+import junitparams.Parameters;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RomanNumbersConverterShould {
 
     @Test
-    public void convert_1_to_I(){
+    @Parameters({
+            "1, I",
+            "5, V",
+            "10, X",
+            "50, L",
+            "100, C",
+            "500, D",
+            "1000, M"
+    })
+    public void convert_arabicNumbers_to_romanNumbers(int arabicNumber, String romanNumber){
         RomanNumbersConverter romanNumbersConverter = new RomanNumbersConverter();
 
-        assertThat(romanNumbersConverter.convert(1)).isEqualTo("I");
-    }
-
-    @Test
-    public void convert_5_to_V(){
-        RomanNumbersConverter romanNumbersConverter = new RomanNumbersConverter();
-
-        assertThat(romanNumbersConverter.convert(5)).isEqualTo("V");
-    }
-
-    @Test
-    public void convert_10_to_X(){
-        RomanNumbersConverter romanNumbersConverter = new RomanNumbersConverter();
-
-        assertThat(romanNumbersConverter.convert(10)).isEqualTo("X");
-    }
-
-    @Test
-    public void convert_50_to_L(){
-        RomanNumbersConverter romanNumbersConverter = new RomanNumbersConverter();
-
-        assertThat(romanNumbersConverter.convert(50)).isEqualTo("L");
-    }
-
-    @Test
-    public void convert_100_to_C(){
-        RomanNumbersConverter romanNumbersConverter = new RomanNumbersConverter();
-
-        assertThat(romanNumbersConverter.convert(100)).isEqualTo("C");
-    }
-
-    @Test
-    public void convert_500_to_D(){
-        RomanNumbersConverter romanNumbersConverter = new RomanNumbersConverter();
-
-        assertThat(romanNumbersConverter.convert(500)).isEqualTo("D");
-    }
-
-    @Test
-    public void convert_1000_to_M(){
-        RomanNumbersConverter romanNumbersConverter = new RomanNumbersConverter();
-
-        assertThat(romanNumbersConverter.convert(1000)).isEqualTo("M");
+        assertThat(romanNumbersConverter.convert(arabicNumber)).isEqualTo(romanNumber);
     }
 
     @Test
