@@ -3,21 +3,26 @@ package com.codurance.katalyst.kickstart.service;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PrintStatementFeature {
 
+    @Mock Console console;
+
     private AccountService accountService;
-    @Mock
-    private Console console;
+    private TransactionService transactionService;
+    private PrintService printService;
 
     @Before
     public void initialise(){
-        accountService = new AccountService();
+        transactionService = new TransactionService();
+        printService = new PrintService();
+        accountService = new AccountService(transactionService, printService);
     }
 
     @Test
@@ -29,11 +34,13 @@ public class PrintStatementFeature {
 
         // When
         accountService.printStatement();
+
         // Then
-        verify(console).print("DATE | AMOUNT | BALANCE");
-        verify(console).print("15/07/2021 | 100.00 | 100.00");
-        verify(console).print("15/07/2021 | -50.00 | 50.00");
-        verify(console).print("15/07/2021 | -10.00 | 40.00");
+        InOrder inOrder = inOrder(console);
+        inOrder.verify(console).printLine("DATE | AMOUNT | BALANCE");
+        inOrder.verify(console).printLine("15/07/2021 | -10.00 | 40.00");
+        inOrder.verify(console).printLine("14/07/2021 | -50.00 | 50.00");
+        inOrder.verify(console).printLine("13/07/2021 | 100.00 | 100.00");
     }
 
 }
