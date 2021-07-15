@@ -1,12 +1,18 @@
 package com.codurance.katalyst.kickstart.service;
 
-/*
-AT just define de entry point and
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 
-mock//
-console.print(String x)
- */
-
-
+@RunWith(MockitoJUnitRunner.class)
 public class AccountServiceShould {
+
+    /*
+    public void deposit(int amount){}
+
+    public void withdraw(int amount){}
+    */
+
+    public void printStatement(){}
+
+
 }
